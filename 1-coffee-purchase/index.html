@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav">
+            <ul class="header-items">
+                <li>
+                    <a href="index.html"><img src="coffee-icon.png" alt="Coffee Cup Icon" class="icon"></a>
+                </li>
+                <li>
+                    <a href="index.html">Just Coffee</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="purchase">
+        <div class="left-tickets">
+            <div class="left-ticket">
+                <h2 class="ticket-title">Items</h2>
+                <table class="items-table">
+                    <tr>
+                        <td>
+                            1x
+                        </td>
+                        <td> <!-- Indentation removed intentionally to allow white space wrapping -->
+                            Flat White
+                            <span class="item-options">
+                                Oat Milk
+                                Extra Shot
+                            </span>
+                        </td>
+                        <td>
+                            $5.00
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1x
+                        </td>
+                        <td>
+                            Long Black
+                            <span class="item-options">
+                                Large
+                            </span>
+                        </td>
+                        <td>
+                            $4.00
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1x
+                        </td>
+                        <td>
+                            Pain au Chocolat
+                            <span class="item-options">
+                                Vegan
+                            </span>
+                        </td>
+                        <td>
+                            $3.00
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="right-tickets">
+            <form class="right-ticket">
+                <h2 class="ticket-title">Name</h2>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Moose Face" required>
+            </form>
+            <form class="right-ticket">
+                <h2 class="ticket-title">Payment</h2>
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="000" required>
+            </form>
+        </div>
+    </div>
+    <div class="purchase-summary">
+        <div>
+            <table class="summary-table">
+                <tr>
+                    <td>
+                        Subtotal
+                    </td>
+                    <td>
+                        $12.00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tax
+                    </td>
+                    <td>
+                        $1.00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total
+                    </td>
+                    <td>
+                        $13.00
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="purchase-action">
+        <button type="submit" class="order-button">Place Order</button>
+    </div>
+</body>
+
+</html>

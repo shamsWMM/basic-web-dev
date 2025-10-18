@@ -1,0 +1,143 @@
+body {
+    margin: 0%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header-items {
+    font-size: 1rem;
+    text-align: center;
+    color: rgb(192, 180, 169);
+    font-weight: bold;
+    list-style-type: none;
+    word-spacing: -0.3em;
+    background-color: rgb(54, 39, 39);
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
+.header-items a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media screen and (min-width: 500px) {
+    .header-items li {
+        display: inline-block;
+    }
+}
+
+.icon {
+    height: 1.5rem;
+    vertical-align: middle;
+}
+
+@media screen and (min-width: 500px) {
+    .purchase, .purchase-summary, .purchase-action {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.purchase, .purchase-summary {
+    padding: 0.5rem;
+}
+
+.left-ticket, .right-ticket {
+    background-color: rgb(240, 230, 220);
+    padding: 0.5rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.right-ticket, .left-ticket {
+    margin-bottom: 2rem;
+}
+
+.left-tickets, .right-tickets, .bottom-tickets {
+    width: 100%;
+    margin: 1rem;
+}
+
+
+.right-ticket input{
+    margin: 1rem;
+    padding: 0.3rem;
+    width: 80%;
+    border-radius: 10px;
+    height: 2rem;
+    background-color: inherit;
+    display: block;
+    border-color: rgb(204, 180, 170);
+    border-width: 1px;
+    font-size: 1rem;
+}
+
+.right-ticket label {
+    display: block;
+    width:fit-content;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    margin-left: 2rem;
+    margin-bottom: -1.5rem;
+    color: rgb(119, 75, 57);    
+    background-color: inherit;
+    position: relative;
+    z-index: 1;
+}
+
+.items-table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    height: 20rem;
+}
+
+.items-table tr {
+    border-top: 0.06rem solid rgb(182, 126, 104);
+    vertical-align: top;
+}
+
+.items-table tr:first-of-type {
+    border-top: none;
+}
+
+.items-table td, .summary-table td {
+    padding-top: 1rem;
+}
+
+.items-table .item-options {
+    white-space: pre-line;
+    color: rgb(154, 123, 123);
+}
+
+.ticket-title {
+    color: rgb(186, 149, 134);
+    padding-left: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.summary-table {
+    margin-top: auto;
+    padding: 1rem;
+}
+
+.summary-table td {
+    padding-right: 4rem;
+    padding-left:2rem;
+}
+
+.summary-table tr:last-of-type {
+    font-weight: bold;
+}
+
+.order-button {
+    background-color: #cfb1a5;
+    color: rgb(96, 65, 65);
+    border: none;
+    padding: 0.8rem;
+    width: 90%;
+    font-size: 1.2rem;
+    border-radius: 2ch;
+    margin: 1rem;
+}
