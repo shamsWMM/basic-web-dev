@@ -9,7 +9,7 @@ function handleButton(innerText) {
 function handleEvaluate(calculation) {
     try {
         let formattedCalculation = formatCalculation(calculation);
-        let result = Function(`"use strict"; return (${formattedCalculation})`)();
+        let result = Number(Function(`"use strict"; return (${formattedCalculation})`)());
         return isNaN(result) ? "Error" : String(result);
     } catch (e) {
         return "Error";
