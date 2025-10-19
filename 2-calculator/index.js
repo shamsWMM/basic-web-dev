@@ -10,7 +10,7 @@ function handleEvaluate(calculation) {
     try {
         let formattedCalculation = formatCalculation(calculation);
         let result = Function(`"use strict"; return (${formattedCalculation})`)();
-        return String(result);
+        return isNaN(result) ? "Error" : String(result);
     } catch (e) {
         return "Error";
     }
