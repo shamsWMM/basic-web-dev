@@ -26,10 +26,10 @@ async function getWinningWord() {
 
 function handleButton(event) {
     let button = event.target;
-    if (button.classList.contains("backspace")) {
+    if (button.id === "backspace-button") {
         handleBackspace();
     }
-    else if (button.classList.contains("enter")) {
+    else if (button.id === "enter-button") {
         handleEnter();
     }
     else {
