@@ -1,0 +1,230 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.guess-row {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    min-height: 2.5rem;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.guess-row div {
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    height: 2.2rem;
+    min-width: 2.2rem;
+    margin: 0.1rem;
+    border: 2px rgb(211, 214, 216) solid;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.keyboard {
+    margin-top: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.keyboard-row {
+    display: flex;
+}
+
+.keyboard-row button {
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 1.7rem;
+    min-height: 2.2rem;
+    margin: 0.1rem;
+    border: 0px rgb(128, 128, 128) solid;
+    background-color: rgba(211, 214, 216);
+    border-radius: 10%;
+    font-weight: bold;
+}
+
+.guess-row .guess-selected {
+    border: 2px rgb(128, 128, 128) solid;
+}
+
+.guess-row .incorrect-guess,
+.keyboard-row .incorrect-guess {
+    color: white;
+    border-width: 0px;
+    background-color: rgb(128, 128, 128);
+}
+
+.guess-row .correct-guess,
+.keyboard-row .correct-guess {
+    color: white;
+    border-width: 0px;
+    background-color: rgb(106, 170, 100);
+}
+
+.guess-row .semicorrect-guess,
+.keyboard-row .semicorrect-guess {
+    color: white;
+    border-width: 0px;
+    background-color: rgb(201, 180, 88);
+}
+
+.alert-box {
+    background-color: black;
+    color: white;
+    font-size: 0.7rem;
+    margin: 0.1rem;
+    padding: 0.4rem;
+    margin-bottom: 0.2rem;
+    position: fixed;
+    z-index: 9999;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+
+        opacity: 1;
+    }
+}
+
+.appear {
+    animation: appear 0.25s forwards;
+}
+
+@keyframes collapse-tile {
+    0% {
+        font-size: 1.5rem;
+        height: 2.2rem;
+    }
+
+    25% {
+        font-size: 1.125rem;
+        height: 1.65rem;
+    }
+
+    50% {
+        font-size: 0.75rem;
+        height: 1.1rem;
+    }
+
+    75% {
+        font-size: 0.325rem;
+        height: 0.55rem;
+    }
+
+    100% {
+        font-size: 0rem;
+        height: 0rem;
+    }
+}
+
+.collapse-tile {
+    animation: collapse-tile 0.5s;
+    overflow: hidden;
+}
+
+@keyframes expand-tile {
+    0% {
+        font-size: 0rem;
+        height: 0rem;
+    }
+
+    25% {
+        font-size: 0.325rem;
+        height: 0.55rem;
+    }
+
+    50% {
+        font-size: 0.75rem;
+        height: 1.1rem;
+    }
+
+    75% {
+        font-size: 1.125rem;
+        height: 1.65rem;
+    }
+
+    100% {
+        font-size: 1.5rem;
+        height: 2.2rem;
+    }
+}
+
+.expand-tile {
+    animation: expand-tile 0.5s;
+    overflow: hidden;
+}
