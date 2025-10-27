@@ -19,7 +19,7 @@ function getGuessRow() {
 }
 async function getWinningWord() {
     const winningWordRes = await fetch(
-        "https://words.dev-apis.com/word-of-the-day?puzzle=1337");
+        "https://words.dev-apis.com/word-of-the-day");
     const { word } = await winningWordRes.json();
     guessBuffer[2] = word;
 }
