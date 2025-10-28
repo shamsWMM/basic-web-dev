@@ -33,14 +33,14 @@ function handleButton(event) {
         handleEnter();
     }
     else {
-        handleText(button.innerText);
+        handleLetter(button.innerText);
     }
 }
 
 function handleKey(event) {
     let key = event.key.toLowerCase();
     if (/^[a-z]$/.test(key)) {
-        handleText(key);
+        handleLetter(key);
     }
     else if (key === "backspace") {
         handleBackspace();
@@ -57,7 +57,7 @@ function handleBackspace() {
     }
 }
 
-function updateGuessEntry(row, col, value) {
+function updateGuessEntry(col, value) {
     const entryTile = getGuessRow().children[col];
     entryTile.innerText = value;
     if (value !== "") {
@@ -70,11 +70,11 @@ function updateGuessEntry(row, col, value) {
     }
 }
 
-function handleText(text) {
+function handleLetter(letter) {
     const bufferTextLength = guessBuffer[1].length;
     if (bufferTextLength < maxCols) {
-        updateGuessEntry(guessBuffer[0], bufferTextLength, text);
-        guessBuffer[1] += text;
+        updateGuessEntry(guessBuffer[0], bufferTextLength, letter);
+        guessBuffer[1] += letter;
     }
 }
 
