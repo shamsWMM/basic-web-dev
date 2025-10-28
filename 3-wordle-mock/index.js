@@ -1,6 +1,7 @@
 const guessBuffer = [0, "", ""];
-const maxRows = 6;
-const maxCols = 5;
+const MAX_ROWS = 6;
+const MAX_COLS = 5;
+let isLoading = true;
 
 async function init() {
     await getWinningWord();
@@ -13,7 +14,8 @@ async function init() {
     document.addEventListener("keydown", handleKey);
 }
 
-function showStatusBarLoading(isLoading) {
+function setLoadingStatus(status) {
+    isLoading = status;
     const statusBar = document.querySelector("#status-bar");
     statusBar.innerText = isLoading ? "↻" : "";
 }
@@ -23,15 +25,19 @@ function getGuessRow() {
         .querySelectorAll(".guess-row")[guessBuffer[0]];
 }
 async function getWinningWord() {
-    showStatusBarLoading(true);
+    setLoadingStatus(true);
     const winningWordRes = await fetch(
         "https://words.dev-apis.com/word-of-the-day");
     const { word } = await winningWordRes.json();
-    showStatusBarLoading(false);
+    setLoadingStatus(false);
     guessBuffer[2] = word;
 }
 
 function handleButton(event) {
+    if (isLoading) {
+        return;
+    }
+
     const button = event.target;
     const buttonText = button.innerText.toLowerCase();
 
@@ -41,12 +47,16 @@ function handleButton(event) {
     else if (button.id === "enter-button") {
         handleEnter();
     }
-    else if (/^[a-z]$/.test(buttonText)){
+    else if (/^[a-z]$/.test(buttonText)) {
         handleLetter(buttonText);
     }
 }
 
 function handleKey(event) {
+    if (isLoading) {
+        return;
+    }
+
     let key = event.key.toLowerCase();
     if (/^[a-z]$/.test(key)) {
         handleLetter(key);
@@ -81,7 +91,7 @@ function updateGuessEntry(row, col, value) {
 
 function handleLetter(letter) {
     const bufferTextLength = guessBuffer[1].length;
-    if (bufferTextLength < maxCols) {
+    if (bufferTextLength < MAX_COLS) {
         updateGuessEntry(guessBuffer[0], bufferTextLength, letter);
         guessBuffer[1] += letter;
     }
@@ -91,7 +101,7 @@ function handleEnter() {
     const bufferText = guessBuffer[1];
     const guessRow = getGuessRow();
 
-    if (bufferText.length < maxCols) {
+    if (bufferText.length < MAX_COLS) {
         shakeElement(guessRow);
         displayAlertBox("Not enough letters.");
     }
@@ -126,6 +136,7 @@ function handleGuess() {
 }
 
 async function handleFiveLetterText() {
+    setLoadingStatus(true);
     const isValidWord = await validateWord(guessBuffer[1]);
     if (!isValidWord) {
         handleInvalidWord();
@@ -133,10 +144,10 @@ async function handleFiveLetterText() {
     else {
         handleValidWord();
     }
+    setLoadingStatus(false);
 }
 
 async function validateWord(word) {
-    showStatusBarLoading(true);
     const validateRes = await fetch(
         "https://words.dev-apis.com/validate-word",
         {
@@ -144,7 +155,6 @@ async function validateWord(word) {
             method: "POST"
         });
     const { validWord } = await validateRes.json();
-    showStatusBarLoading(false);
     return validWord;
 }
 
@@ -211,7 +221,9 @@ function updateGameAfterGuess() {
     guessBuffer[0] += 1;
     guessBuffer[1] = "";
 
-    if (guessBuffer[0] < maxRows) return;
+    if (guessBuffer[0] < MAX_ROWS) {
+        return;
+    }
     displayAlertBox(guessBuffer[2]);
     removeAllEventListeners();
 }
