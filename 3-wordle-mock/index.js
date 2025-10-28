@@ -26,21 +26,21 @@ async function getWinningWord() {
 
 function handleButton(event) {
     let button = event.target;
-    if (button.id === "backspace-button") {
+    if (button.classList.contains("backspace")) {
         handleBackspace();
     }
-    else if (button.id === "enter-button") {
+    else if (button.classList.contains("enter")) {
         handleEnter();
     }
     else {
-        handleLetter(button.innerText);
+        handleText(button.innerText);
     }
 }
 
 function handleKey(event) {
     let key = event.key.toLowerCase();
     if (/^[a-z]$/.test(key)) {
-        handleLetter(key);
+        handleText(key);
     }
     else if (key === "backspace") {
         handleBackspace();
@@ -57,7 +57,7 @@ function handleBackspace() {
     }
 }
 
-function updateGuessEntry(col, value) {
+function updateGuessEntry(row, col, value) {
     const entryTile = getGuessRow().children[col];
     entryTile.innerText = value;
     if (value !== "") {
@@ -70,11 +70,11 @@ function updateGuessEntry(col, value) {
     }
 }
 
-function handleLetter(letter) {
+function handleText(text) {
     const bufferTextLength = guessBuffer[1].length;
     if (bufferTextLength < maxCols) {
-        updateGuessEntry(guessBuffer[0], bufferTextLength, letter);
-        guessBuffer[1] += letter;
+        updateGuessEntry(guessBuffer[0], bufferTextLength, text);
+        guessBuffer[1] += text;
     }
 }
 
