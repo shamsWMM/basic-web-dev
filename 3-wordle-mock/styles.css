@@ -4,12 +4,38 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+
+.game-title {
+    border-bottom: 1px solid black;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.205);
+}
+
+.game-title h1 {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    margin: 0px;
+}
+
+.status-bar {
+    color: grey;
+    height: 2.1rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 2rem;
+    animation: rotate-clockwise 1.5s linear infinite;
 }
 
 .wrapper {
@@ -227,4 +253,10 @@ body {
 .expand-tile {
     animation: expand-tile 0.5s;
     overflow: hidden;
+}
+
+@keyframes rotate-clockwise {
+  to {
+    transform: rotate(360deg);
+  }
 }

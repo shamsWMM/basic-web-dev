@@ -13,34 +13,43 @@ async function init() {
     document.addEventListener("keydown", handleKey);
 }
 
+function showStatusBarLoading(isLoading) {
+    const statusBar = document.querySelector("#status-bar");
+    statusBar.innerText = isLoading ? "↻" : "";
+}
+
 function getGuessRow() {
     return document
         .querySelectorAll(".guess-row")[guessBuffer[0]];
 }
 async function getWinningWord() {
+    showStatusBarLoading(true);
     const winningWordRes = await fetch(
         "https://words.dev-apis.com/word-of-the-day");
     const { word } = await winningWordRes.json();
+    showStatusBarLoading(false);
     guessBuffer[2] = word;
 }
 
 function handleButton(event) {
-    let button = event.target;
-    if (button.classList.contains("backspace")) {
+    const button = event.target;
+    const buttonText = button.innerText.toLowerCase();
+
+    if (button.id === "backspace-button") {
         handleBackspace();
     }
-    else if (button.classList.contains("enter")) {
+    else if (button.id === "enter-button") {
         handleEnter();
     }
-    else {
-        handleText(button.innerText);
+    else if (/^[a-z]$/.test(buttonText)){
+        handleLetter(buttonText);
     }
 }
 
 function handleKey(event) {
     let key = event.key.toLowerCase();
     if (/^[a-z]$/.test(key)) {
-        handleText(key);
+        handleLetter(key);
     }
     else if (key === "backspace") {
         handleBackspace();
@@ -70,11 +79,11 @@ function updateGuessEntry(row, col, value) {
     }
 }
 
-function handleText(text) {
+function handleLetter(letter) {
     const bufferTextLength = guessBuffer[1].length;
     if (bufferTextLength < maxCols) {
-        updateGuessEntry(guessBuffer[0], bufferTextLength, text);
-        guessBuffer[1] += text;
+        updateGuessEntry(guessBuffer[0], bufferTextLength, letter);
+        guessBuffer[1] += letter;
     }
 }
 
@@ -127,6 +136,7 @@ async function handleFiveLetterText() {
 }
 
 async function validateWord(word) {
+    showStatusBarLoading(true);
     const validateRes = await fetch(
         "https://words.dev-apis.com/validate-word",
         {
@@ -134,6 +144,7 @@ async function validateWord(word) {
             method: "POST"
         });
     const { validWord } = await validateRes.json();
+    showStatusBarLoading(false);
     return validWord;
 }
 
